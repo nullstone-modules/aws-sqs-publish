@@ -1,0 +1,15 @@
+org_name: nullstone
+name: aws-sqs-publish
+friendly_name: Queue (SQS) Publish
+description: Grants and configures application ability to publish to an SQS datastore.
+category: capability
+subcategory: datastores
+provider_types:
+    - aws
+platform: sqs
+subplatform: ""
+type: ""
+appCategories:
+    - container
+    - serverless
+is_public: true
