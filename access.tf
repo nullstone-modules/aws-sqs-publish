@@ -19,4 +19,17 @@ data "aws_iam_policy_document" "access" {
       "sqs:GetQueueUrl"
     ]
   }
+
+  dynamic "statement" {
+    for_each = local.kms_key_id == "" ? [] : [local.kms_key_id]
+
+    content {
+      effect    = "AllowEncryptionWrite"
+      resources = [statement.value]
+      actions   = [
+        "kms:GenerateDataKey", // Used to encrypt messages
+        "kms:Decrypt" // Used to verify integrity of new data key before using it
+      ]
+    }
+  }
 }
